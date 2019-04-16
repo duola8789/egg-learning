@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1555309477933_8329';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'robot' ];
 
   // add your user config here
   const userConfig = {
@@ -31,6 +31,12 @@ module.exports = appInfo => {
       count: 1,
       // 豆瓣电影 API
       serverUrl: 'https://api.douban.com/v2/movie/in_theaters',
+    },
+
+    robot: {
+      ua: [
+        /Baiduspider/i,
+      ],
     },
   };
 
