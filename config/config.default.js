@@ -28,7 +28,6 @@ module.exports = appInfo => {
       },
     },
     news: {
-      count: 1,
       // 豆瓣电影 API
       serverUrl: 'https://api.douban.com/v2/movie/in_theaters',
     },
