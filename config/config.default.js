@@ -37,6 +37,11 @@ module.exports = appInfo => {
         /Baiduspider/i,
       ],
     },
+
+    // 跨域
+    security: {
+      domainWhiteList: [ 'http://localhost:3000' ],
+    },
   };
 
   return {
