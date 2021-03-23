@@ -3,23 +3,17 @@
  * Created By zh on 2019-05-05
  */
 
-exports.index = async (ctx) => {
-  ctx.body = { data: `Hello posts ${ctx.params.name}` };
-  ctx.status = 200;
-};
+const Controller = require('egg').Controller;
 
-exports.new = async (ctx) => {
-  ctx.status = 200;
-  ctx.body = {
-    data: 'news',
-  };
-};
+class PostsController extends Controller {
+  async index() {
+    const { ctx } = this;
+    const page = ctx.query.page;
+    ctx.body = {
+      test: page,
+    };
+  }
+}
 
-exports.create = async (ctx) => {
-  console.log(ctx.request.body, 123);
-  ctx.status = 500;
-  ctx.body = {
-    data: 'posts',
-  };
-};
+module.exports = PostsController;
 
