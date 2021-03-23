@@ -37,9 +37,6 @@ module.exports = {
     if (index !== undefined && arr[index] !== undefined) {
       return arr[index];
     }
-    if (arr === undefined) {
-      console.log(arr);
-    }
     return arr[Random.integer(0, arr.length - 1)];
   },
 };

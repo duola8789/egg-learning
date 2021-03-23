@@ -41,11 +41,7 @@ class WsService extends Service {
     const addRes = () => this.ctx.helper.produceWsData('ROAD_EVENTS', events);
     // const clearRes = () => this.ctx.helper.produceWsData('ROAD_EVENTS', undefined, { refresh: [100, 200, 300] });
 
-    const res = addRes();
-
-    console.log(res);
-
-    return JSON.stringify(res);
+    return JSON.stringify(addRes());
   }
 }
 
