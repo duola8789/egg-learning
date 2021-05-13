@@ -15,19 +15,19 @@ class WsService extends Service {
       totalMileage: Random.integer(0, 100000),
       VH_ILL: Random.integer(0, 100000),
       RD_ASS: Random.integer(0, 100000),
-      RD_SEC: Random.integer(0, 100000),
+      CT_CAR: Random.integer(0, 100000),
     });
     return JSON.stringify(res);
   }
 
   // 违法停车
-  async VH_ILL_PARK() {
+  async overview100() {
     const VH_ILL_PARK_BUS_LANE = Random.integer(0, 100);
     const VH_ILL_PARK_BICYCLE_LANE = Random.integer(0, 100);
     const VH_ILL_PARK_SIDEWALK = Random.integer(0, 100);
     const VH_ILL_PARK_MOTORWAY = Random.integer(0, 100);
 
-    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_VH_ILL_PARK', {
+    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_100', {
       VH_ILL_PARK_BUS_LANE,
       VH_ILL_PARK_BICYCLE_LANE,
       VH_ILL_PARK_SIDEWALK,
@@ -38,59 +38,64 @@ class WsService extends Service {
   }
 
   // 违法通行
-  async VH_ILL_TRAFFIC() {
-    const VH_ILL_TRAFFIC_TRUCK = Random.integer(0, 100); // 货车违章事件数
-    const VH_ILL_TRAFFIC_MUD_TRUCK_OL = Random.integer(0, 100); // 泥头车超载事件数
+  async overview101() {
     const VH_ILL_TRAFFIC_OVER_SPEED = Random.integer(0, 100); // 超速行驶事件数
     const VH_ILL_TRAFFIC_BUS_LANE = Random.integer(0, 100); // 占用公交车道行驶事件数
     const VH_ILL_TRAFFIC_BICYCLE_LANE = Random.integer(0, 100); // 占用非机动车道行驶事件数
-    const VH_ILL_TRAFFIC_REVERSE_DRIVE = Random.integer(0, 100); // 机动车逆向行驶事件数
-    const VH_ILL_TRAFFIC_FOREIGN_CONTROL = Random.integer(0, 100); // 外地车管控事件数
 
-    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_VH_ILL_TRAFFIC', {
-      VH_ILL_TRAFFIC_MUD_TRUCK_OL,
+    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_101', {
       VH_ILL_TRAFFIC_OVER_SPEED,
       VH_ILL_TRAFFIC_BUS_LANE,
       VH_ILL_TRAFFIC_BICYCLE_LANE,
-      VH_ILL_TRAFFIC_REVERSE_DRIVE,
-      VH_ILL_TRAFFIC_FOREIGN_CONTROL,
-      VH_ILL_TRAFFIC_TRUCK:
-        VH_ILL_TRAFFIC_TRUCK +
-        VH_ILL_TRAFFIC_TRUCK +
-        VH_ILL_TRAFFIC_MUD_TRUCK_OL +
-        VH_ILL_TRAFFIC_OVER_SPEED +
-        VH_ILL_TRAFFIC_BUS_LANE +
-        VH_ILL_TRAFFIC_BICYCLE_LANE +
-        VH_ILL_TRAFFIC_REVERSE_DRIVE +
-        VH_ILL_TRAFFIC_FOREIGN_CONTROL,
+      VH_ILL_TRAFFIC: VH_ILL_TRAFFIC_OVER_SPEED + VH_ILL_TRAFFIC_BUS_LANE + VH_ILL_TRAFFIC_BICYCLE_LANE,
     });
     return JSON.stringify(res);
   }
 
-  // 信号灯故障
-  async RD_ASS_SIGNAL_FAULT() {
-    const RD_ASS_SIGNAL_FAULT_NORMAL = Random.integer(0, 100);
-    const RD_ASS_SIGNAL_FAULT_BLINK = Random.integer(0, 100);
-    const RD_ASS_SIGNAL_FAULT_BLACK = Random.integer(0, 100);
+  // 重点车辆监管
+  async overview103() {
+    const VH_ILL_KEYVEH_TRUCK_ILL_PASSAGE = Random.integer(0, 100); // 货车违法通行事件数
+    const VH_ILL_KEYVEH_MUD_TRUCK_OVER_LOAD = Random.integer(0, 100); // 泥头车超载事件数
+    const VH_ILL_KEYVEH_MUD_TRUCK_UNLICENSED = Random.integer(0, 100); // 泥头车无证运营事件数
 
-    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_RD_ASS_SIGNAL_FAULT', {
-      RD_ASS_SIGNAL_FAULT_NORMAL,
-      RD_ASS_SIGNAL_FAULT_BLINK,
-      RD_ASS_SIGNAL_FAULT_BLACK,
-      RD_ASS_SIGNAL_FAULT: RD_ASS_SIGNAL_FAULT_NORMAL + RD_ASS_SIGNAL_FAULT_BLINK + RD_ASS_SIGNAL_FAULT_BLACK,
+    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_101', {
+      VH_ILL_KEYVEH_TRUCK_ILL_PASSAGE,
+      VH_ILL_KEYVEH_MUD_TRUCK_OVER_LOAD,
+      VH_ILL_KEYVEH_MUD_TRUCK_UNLICENSED,
+      VH_ILL_KEYVEH:
+        VH_ILL_KEYVEH_TRUCK_ILL_PASSAGE + VH_ILL_KEYVEH_MUD_TRUCK_OVER_LOAD + VH_ILL_KEYVEH_MUD_TRUCK_UNLICENSED,
     });
     return JSON.stringify(res);
   }
 
-  // 抛撒物
-  async RD_SEC_ROAD_LITTER() {
-    const RD_SEC_ROAD_LITTER_MOTORWAY = Random.integer(0, 100);
-    const RD_SEC_ROAD_LITTER_BICYCLE_LANE = Random.integer(0, 100);
+  // 秩序设施故障
+  async overview200() {
+    const RD_ASS_ORDER_SIGNAL_NORMAL = Random.integer(0, 100); // 信号灯正常20001
+    const RD_ASS_ORDER_SIGNAL_BLINK = Random.integer(0, 100); // 信号灯闪烁20002
+    const RD_ASS_ORDER_SIGNAL_BLACK = Random.integer(0, 100); // 信号灯不亮20003
+    const RD_ASS_ORDER_DAMAGED_GUARDRAIL = Random.integer(0, 100); // 护栏损坏20005
 
-    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_RD_SEC_ROAD_LITTER', {
-      RD_SEC_ROAD_LITTER_MOTORWAY,
-      RD_SEC_ROAD_LITTER_BICYCLE_LANE,
-      abandonedObjectNum: RD_SEC_ROAD_LITTER_MOTORWAY + RD_SEC_ROAD_LITTER_BICYCLE_LANE,
+    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_200', {
+      RD_ASS_ORDER_SIGNAL_NORMAL,
+      RD_ASS_ORDER_SIGNAL_BLINK,
+      RD_ASS_ORDER_SIGNAL_BLACK,
+      RD_ASS_ORDER_DAMAGED_GUARDRAIL,
+      RD_ASS_ORDER:
+        RD_ASS_ORDER_SIGNAL_NORMAL +
+        RD_ASS_ORDER_SIGNAL_BLINK +
+        RD_ASS_ORDER_SIGNAL_BLACK +
+        RD_ASS_ORDER_DAMAGED_GUARDRAIL,
+    });
+    return JSON.stringify(res);
+  }
+
+  // 道路环保
+  async overview300() {
+    const CT_CAR_ROAD_EP_RL_BIG = Random.integer(0, 100);
+
+    const res = this.ctx.helper.produceWsData('OVERVIEW_DATA_300', {
+      CT_CAR_ROAD_EP_RL_BIG,
+      CT_CAR_ROAD_EP: CT_CAR_ROAD_EP_RL_BIG,
     });
     return JSON.stringify(res);
   }

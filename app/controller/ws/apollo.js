@@ -38,25 +38,29 @@ class ApolloWsController extends Controller {
       // 大屏数据概览 - 状态总览
       const overviewData = await ctx.service.ws.dataOverview.all();
       // 大屏数据概览 - 违法停车
-      const overviewData_VH_ILL_PARK = await ctx.service.ws.dataOverview.VH_ILL_PARK();
+      const overviewData_100 = await ctx.service.ws.dataOverview.overview100();
       // 大屏数据概览 - 违法通行
-      const overviewData_VH_ILL_TRAFFIC = await ctx.service.ws.dataOverview.VH_ILL_TRAFFIC();
-      // 大屏数据概览 - 信号灯故障
-      const overviewData_RD_ASS_SIGNAL_FAULT = await ctx.service.ws.dataOverview.RD_ASS_SIGNAL_FAULT();
+      const overviewData_101 = await ctx.service.ws.dataOverview.overview101();
+      // 大屏数据概览 - 重点车辆监管
+      const overviewData_103 = await ctx.service.ws.dataOverview.overview103();
+      // 大屏数据概览 - 秩序设施故障
+      const overviewData_200 = await ctx.service.ws.dataOverview.overview200();
       // 大屏数据概览 - 抛撒物
-      const overviewData_RD_SEC_ROAD_LITTER = await ctx.service.ws.dataOverview.RD_SEC_ROAD_LITTER();
+      const overviewData_300 = await ctx.service.ws.dataOverview.overview300();
 
       /* **************************** 事件热门区域 **************************** */
       // 事件热门区域 - 状态总览
       const eventRegion = await ctx.service.ws.eventRegion.all();
       // 事件热门区域 - 违法停车
-      const eventRegion_VH_ILL_PARK = await ctx.service.ws.eventRegion.VH_ILL_PARK();
+      const eventRegions_100 = await ctx.service.ws.eventRegion.eventRegions100();
       // 事件热门区域 - 违法通行
-      const eventRegion_VH_ILL_TRAFFIC = await ctx.service.ws.eventRegion.VH_ILL_TRAFFIC();
-      // 事件热门区域 - 信号灯故障
-      const eventRegion_RD_ASS_SIGNAL_FAULT = await ctx.service.ws.eventRegion.RD_ASS_SIGNAL_FAULT();
-      // 事件热门区域 - 抛撒物
-      const eventRegion_RD_SEC_ROAD_LITTER = await ctx.service.ws.eventRegion.RD_SEC_ROAD_LITTER();
+      const eventRegions_101 = await ctx.service.ws.eventRegion.eventRegions101();
+      // 事件热门区域 - 重点车辆监管
+      const eventRegions_103 = await ctx.service.ws.eventRegion.eventRegions103();
+      // 事件热门区域 - 秩序设施故障
+      const eventRegions_200 = await ctx.service.ws.eventRegion.eventRegions200();
+      // 事件热门区域 - 道路环保
+      const eventRegions_300 = await ctx.service.ws.eventRegion.eventRegions300();
 
       // /****************************** 大屏监控 ******************************/
       // // 概览数据 - 违停
@@ -87,15 +91,17 @@ class ApolloWsController extends Controller {
         featureTrendData,
         vehStates,
         overviewData,
-        overviewData_VH_ILL_PARK,
-        overviewData_VH_ILL_TRAFFIC,
-        overviewData_RD_ASS_SIGNAL_FAULT,
-        overviewData_RD_SEC_ROAD_LITTER,
+        overviewData_100,
+        overviewData_101,
+        overviewData_103,
+        overviewData_200,
+        overviewData_300,
         eventRegion,
-        eventRegion_VH_ILL_PARK,
-        eventRegion_VH_ILL_TRAFFIC,
-        eventRegion_RD_ASS_SIGNAL_FAULT,
-        eventRegion_RD_SEC_ROAD_LITTER,
+        eventRegions_100,
+        eventRegions_101,
+        eventRegions_103,
+        eventRegions_200,
+        eventRegions_300,
         roadEvents,
       ].forEach(v => {
         ctx.websocket.send(v);

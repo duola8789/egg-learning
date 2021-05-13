@@ -16,7 +16,7 @@ class WsService extends Service {
 
   // 违法停车
   async VH_ILL_PARK() {
-    const res = this.ctx.helper.produceWsData('EVENT_STAT_VH_ILL_PARK', {
+    const res = this.ctx.helper.produceWsData('EVENT_STAT_100', {
       time: new Date().getHours(),
       value: {
         VH_ILL_PARK_BUS_LANE: 1000,
@@ -30,7 +30,7 @@ class WsService extends Service {
 
   // 违法通行
   async VH_ILL_TRAFFIC() {
-    const res = this.ctx.helper.produceWsData('EVENT_STAT_VH_ILL_TRAFFIC', {
+    const res = this.ctx.helper.produceWsData('EVENT_STAT_101', {
       time: new Date().getHours(),
       value: {
         VH_ILL_TRAFFIC_TRUCK: 1000,
@@ -47,7 +47,7 @@ class WsService extends Service {
 
   // 信号灯故障
   async RD_ASS_SIGNAL_FAULT() {
-    const res = this.ctx.helper.produceWsData('EVENT_STAT_RD_ASS_SIGNAL_FAULT', {
+    const res = this.ctx.helper.produceWsData('EVENT_STAT_200', {
       time: new Date().getHours(),
       value: {
         RD_ASS_SIGNAL_FAULT_NORMAL: 1000,
@@ -60,7 +60,7 @@ class WsService extends Service {
 
   // 抛撒物
   async RD_SEC_ROAD_LITTER() {
-    const res = this.ctx.helper.produceWsData('EVENT_STAT_RD_SEC_ROAD_LITTER', {
+    const res = this.ctx.helper.produceWsData('EVENT_STAT_300', {
       time: new Date().getHours(),
       value: {
         RD_SEC_ROAD_LITTER_MOTORWAY: 1000,

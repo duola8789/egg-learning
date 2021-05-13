@@ -8,6 +8,7 @@ const makeObjectNo = eventType => {
   const OBJECT_NOS = {
     100: () => `京${Random.character('lower')}${Random.integer(10000, 99999)}`,
     101: () => `京${Random.character('lower')}${Random.integer(10000, 99999)}`,
+    103: () => `京${Random.character('lower')}${Random.integer(10000, 99999)}`,
     200: () => Random.integer(100000, 999999),
     300: () => Random.integer(10000000, 99999999),
   };
@@ -17,14 +18,14 @@ const makeObjectNo = eventType => {
 class WsService extends Service {
   // 道路事件
   async all() {
-    const events = Array.from({ length: Random.integer(1, 5) }).map((v, index) => {
+    const events = Array.from({ length: Random.integer(1, 2) }).map((v, index) => {
       const { eventTypes, mapConfig } = this.config;
       const eventTopType = this.ctx.helper.getRandomInArray(eventTypes, 0);
-      const eventType = this.ctx.helper.getRandomInArray(eventTopType.subTypes, 0);
+      const eventType = this.ctx.helper.getRandomInArray(eventTopType.subTypes);
       const eventSubType = this.ctx.helper.getRandomInArray(eventType.subTypes);
       const points = this.ctx.helper.getRandomInArray(mapConfig.points);
       return {
-        eventId: Random.id(),
+        eventId: Random.id() + index,
         eventTopType: eventTopType.type,
         eventType: eventType.type,
         eventSubType,
